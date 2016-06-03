@@ -63,7 +63,7 @@ resume 服务器：从suspend状态到active状态，可以接受新的请求。
             for (ServerActivity activity : activities) {
                 activity.preSuspend(cb);
             }
-            timer = new Timer();  //suspend 有timeout参数，过多久超时，即定义挂起多久
+            timer = new Timer();  //suspend 有timeout参数，如果超过这个时间还没有处理完，就直接强挂起，如果没有，就会无期限等下去
             if (timeoutMillis > 0) {
                 timer.schedule(new TimerTask() {
                     @Override
